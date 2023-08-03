@@ -3,14 +3,20 @@
 import React from "react";
 
 export default function Home() {
+    const vaultChipChance = 0.2;
+    const vaultStoneForChromaticIron = 20;
+
     const [vaultStone, setVaultStone] = React.useState(0);
     const [vaultChip, setVaultChip] = React.useState(0);
     
     const [chromaticIron, setChromaticIron] = React.useState(0);
-    const [chromaticIronReq, setChromaticIronReq] = React.useState("Get Some Vault Stone to unlock Chromatic Iron");
+    const [chromaticIronReq, setChromaticIronReq] = React.useState("Get " + vaultStoneForChromaticIron + " Vault Stone to unlock Chromatic Iron");
+
+
+    //****  Button Events  **** */
+
 
     // 20% Chance to get a Chipped Vault Rock from mining Vault Stone
-    const vaultChipChance = 0.2;
     const mineVaultStone = () => {
         if(Math.random() <= vaultChipChance)
             setVaultChip(vaultChip+1);
@@ -19,7 +25,6 @@ export default function Home() {
     }
 
     // You need 20 Vault Stone before you can start mining Chromatic Iron
-    const vaultStoneForChromaticIron = 20;
     let canMineChromaticIron = false;
     const mineChromaticIron = () => {
         if(vaultStone >= vaultStoneForChromaticIron && !canMineChromaticIron){
