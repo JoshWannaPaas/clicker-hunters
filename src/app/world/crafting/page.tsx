@@ -13,9 +13,9 @@ export default function Home() {
   const [materialValues, setMaterialValues] = React.useState([50, 50, 50]);
 
 
-  // Materials Object
+  // Materials Object/Dictionary
   const materials: Record<string, number> = {
-    "Vault Stone": 50,
+    "Vault Stone": 50, 
     "Chipped Vault Rock": 50,
     "Chromatic Iron": 50
   }

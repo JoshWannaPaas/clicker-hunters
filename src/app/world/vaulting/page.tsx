@@ -1,6 +1,6 @@
-"use client"
+"use client"    
 
-import { usernameAtom } from "@/recoil/profile";
+import { usernameAtom } from "@/atoms/username";
 import React, { useEffect } from "react";
 import {useRecoilState} from 'recoil';
 
@@ -15,7 +15,7 @@ export default function Home() {
 
     // Click Button to run the Vault
     const [vaultMessage, setVaultMessage] = React.useState(`Have ${username} run a vault!`);
-    
+
     useEffect(() => {
         setVaultMessage(`Have ${username} run a vault!`);
     }, [setVaultMessage, username]);

@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { RecoilRoot } from 'recoil'
-import SignInSection from '@/components/SignInSection'
+import MaterialSection from '@/components/MaterialSection'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,8 +24,7 @@ export default function RootLayout ({children,}: {children: React.ReactNode}) {
             <div>
               <h1>Clicker Hunters</h1>
 
-              <ProfileSection />
-              <SignInSection />
+              <MaterialSection />
               <Link className="nav" href="/">Home</Link>
               <Link className="nav" href="/world/crafting">Crafting</Link>
               <Link className="nav" href="/world/gathering">Gathering</Link>
