@@ -24,6 +24,7 @@ export default function Home() {
                 if(currentVaultTime <= 0){
                     clearInterval(vaultRun);
                     generateVaultLoot();
+                    setVaultMessage("Vault is Finished! Run another vault!");
                 }
             }, timeInterval);
         }
