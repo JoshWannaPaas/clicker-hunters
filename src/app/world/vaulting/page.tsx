@@ -6,7 +6,7 @@ export default function Home() {
     const [vaultMessage, setVaultMessage] = React.useState("Run a vault!");
 
     const vaultTime = 10;
-    const timeInterval = 50;
+    const timeInterval = 100;
     let currentVaultTime:number;
     let runningVault = false;
     const runVault = () => {
@@ -29,11 +29,9 @@ export default function Home() {
     const lootList = [
         "Vault Diamonds", "Larimar", "Carbon", "Knowledge Essence"
     ]
-    const lootValues = [
-        0, 0, 0, 0
-    ]
+    const [lootValues, setLootValues] = React.useState([0, 0, 0, 0]);
 
-    const [vaultLoot, setVaultLoot] = React.useState("");
+    const [vaultLoot, setVaultLoot] = React.useState("No Vault has been run yet");
     const [totalVaultLoot, setTotalVaultLoot] = React.useState("Nothing");
 
     const generateVaultLoot = () => {
@@ -42,20 +40,24 @@ export default function Home() {
         ]
 
         for(let i = 0 ; i < lootValues.length; i++){
-            console.log("Loot Value before: " + lootValues[i]);
             currentLootValues[i] = Math.floor(Math.random() * 100);
             lootValues[i] += currentLootValues[i];
-            console.log("Loot Value after: " + lootValues[i]);     //???? im just going to sleep
         }
 
         let loot = "";
-        for(let i = 0; i < lootList.length; i++)
-            loot += lootList[i] + ": " + currentLootValues[i] + ", ";
+        for(let i = 0; i < lootList.length; i++){
+            loot += lootList[i] + ": " + currentLootValues[i];
+            if(i != lootList.length-1)
+                loot += ", ";
+        }
         setVaultLoot(loot);
 
         let totalLoot = "";
-        for(let i = 0; i < lootList.length; i++)
-            totalLoot += lootList[i] + ": " + lootValues[i] + ", ";
+        for(let i = 0; i < lootList.length; i++){
+            totalLoot += lootList[i] + ": " + lootValues[i];
+            if(i != lootList.length-1)
+                totalLoot += ", ";
+        }
         setTotalVaultLoot(totalLoot);
     }
 
@@ -65,8 +67,10 @@ export default function Home() {
       <main>
         <p>We came to vault, vault, vault, vault...</p>
         <button onClick={runVault}>{vaultMessage}</button>
-        <p>Last Vault Run Loot: {vaultLoot}</p>
-        <p>Total Vault Loot: {totalVaultLoot}</p>
+        <h3>Last Vault Run Loot</h3>
+        <p>{vaultLoot}</p>
+        <h3>Total Vault Loot</h3>
+        <p>{totalVaultLoot}</p>
       </main>
     )
   }
