@@ -1,3 +1,4 @@
+## Outline
 3 Phases:
 Gathering, Crafting, Vaulting
 
@@ -15,3 +16,15 @@ A timed resource collection. Think of it as an automatic Gathering that you have
 Needs Vault Rock + Vault Stone to go Vaulting.
 These are done autoamtically, and you'll need to hire people to run vaults for you.
 These people can have their stats/gear adjusted to make for better gains/survival rates for vaults.
+
+
+# Materials
+Your inventory is shown on the page at all times and can be hidden if wished.
+Every phase of the game will add to your inventory, and some will require to use materials of course.
+
+Break the game's resources into very basic components. Things that compact should just be at their highest tier.
+For example, instead of having Raw Chromatic Iron that you need to smelt when you mine it, just get Chromatic Iron (Ingots)
+Another example, instead of getting Knowledge Essence that you just need to compact into Knowledge Shards, you just get Knowledge Shards from Vaults
+
+Crafting amounts aren't limited to Minecraft's 3x3 workbench, so values of crafts may be adjusted.
+For example, Knowledge Stars are crafted with 8 Knowledge Shards, but since you get Shards from Vaults, you can extend this to something like 100 Shards for a Knowledge Star

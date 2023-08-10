@@ -24,11 +24,12 @@ export default function RootLayout ({children,}: {children: React.ReactNode}) {
             <div>
               <h1>Clicker Hunters</h1>
 
-              <MaterialSection />
               <Link className="nav" href="/">Home</Link>
               <Link className="nav" href="/world/crafting">Crafting</Link>
               <Link className="nav" href="/world/gathering">Gathering</Link>
               <Link className="nav" href="/world/vaulting">Vaulting</Link>
+              <br /><br />
+              <MaterialSection />
             </div>
 
 

@@ -1,22 +1,35 @@
-import { materialListAtom } from "@/atoms/materialList";
+import { inventoryAtom } from "@/atoms/inventory";
 import { useRecoilState } from "recoil";
 import React, { useEffect } from "react";
-
-// const ProfileSection = () => {
-//     const [username, setUsername] = useRecoilState(usernameAtom)
-//     return (
-//       <div>
-//         {username}
-//       </div>
-//     )
-//   }
-//   export default ProfileSection;
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
   const MaterialSection = () => {
-    const [materialList, setMaterialList] = useRecoilState(materialListAtom);
+    const [inventory, setInventory] = useRecoilState(inventoryAtom);
 
-    return(
-        <div>{JSON.stringify(materialList)}</div>
+    let inv = [];
+    for(let i in inventory){
+      inv.push(<Typography>{i}: {inventory[i]}</Typography>);
+    }
+
+    return (
+        <div>
+          <Accordion className="Inventory">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography id="invHeader-text">Inventory</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {inv}
+            </AccordionDetails>
+          </Accordion>
+        </div>
     )
   }
 
