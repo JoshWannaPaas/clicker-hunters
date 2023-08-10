@@ -1,5 +1,3 @@
-"use client"
-
 import ProfileSection from '@/components/ProfileSection'
 import './globals.css'
 import type { Metadata } from 'next'
