@@ -1,4 +1,4 @@
-"use client"
+
 
 import ProfileSection from '@/components/ProfileSection'
 import './globals.css'
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 hydrateRoot(document, <html />);
 
-
+"use client"
 export default function RootLayout ({children,}: {children: React.ReactNode}) {
 
   return (
