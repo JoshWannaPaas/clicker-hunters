@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 
 
 "use client"
-import { hydrateRoot } from 'react-dom/client';
-hydrateRoot(document, <html />);
+// import { hydrateRoot } from 'react-dom/client';
+// hydrateRoot(document, <html />);
 export default function RootLayout ({children,}: {children: React.ReactNode}) {
 
   return (
