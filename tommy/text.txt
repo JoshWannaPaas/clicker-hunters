@@ -1,0 +1,6 @@
+1. Fix some bugs
+
+2. Material UI - Mostly Layout
+
+- Stack, Grid
+- AppBar

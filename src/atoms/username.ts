@@ -1,7 +1,5 @@
 import { AtomEffect, atom } from "recoil";
 
-
-
 // const localStorageEffect = (key: string):AtomEffect<any> => ({setSelf, onSet}) => {
 //   const savedValue = localStorage.getItem(key)
 //   if (savedValue != null) {
@@ -14,7 +12,6 @@ import { AtomEffect, atom } from "recoil";
 //   });
 // };
 
-
 /**
  * The user's username
  */
@@ -23,4 +20,3 @@ export const usernameAtom = atom<string>({
   default: "JoshWannaPaas",
   // effects: [ localStorageEffect("usernameAtom") ]
 });
-

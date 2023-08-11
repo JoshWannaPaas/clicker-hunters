@@ -1,19 +1,25 @@
 .nav {
-    font-size: 150%;
-    margin: 1%;
+  font-size: 150%;
+  margin: 1%;
 }
 
 .inventory {
-    background-color: white;
+  background-color: white;
 }
 
 #panel1a-header {
-    background: rgb(241,176,35);
-    background: linear-gradient(180deg, rgba(241,176,35,1) 11%, rgba(241,175,60,1) 33%, rgba(255,180,50,1) 62%, rgba(254,173,74,1) 94%);
+  background: rgb(241, 176, 35);
+  background: linear-gradient(
+    180deg,
+    rgba(241, 176, 35, 1) 11%,
+    rgba(241, 175, 60, 1) 33%,
+    rgba(255, 180, 50, 1) 62%,
+    rgba(254, 173, 74, 1) 94%
+  );
 }
 
 #invHeader-text {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 800;
-    font-size: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 800;
+  font-size: 24px;
 }
