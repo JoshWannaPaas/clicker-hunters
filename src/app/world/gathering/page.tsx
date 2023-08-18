@@ -53,8 +53,8 @@ export default function Home() {
       canMineChromaticIron = true;
     }
     if (canMineChromaticIron) {
-      setChromaticIron(chromaticIron + 1);
-      setInventory({ ...inventory, "Chromatic Iron": chromaticIron + 1 });
+      // setChromaticIron(chromaticIron + 1);
+      // setInventory({ ...inventory, "Chromatic Iron": chromaticIron + 1 });
     }
   };
 
@@ -62,8 +62,8 @@ export default function Home() {
   const resetInventory = () => {
     setVaultChip(0);
     setVaultStone(0);
-    setChromaticIron(0);
-    setInventory({ "Vault Stone": 0 });
+    // setChromaticIron(0);
+    // setInventory({ "Vault Stone": 0 });
     setChromaticIronReq(
       "Get " +
         vaultStoneForChromaticIron +

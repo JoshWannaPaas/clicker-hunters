@@ -36,7 +36,10 @@ for (let item of list) {
 
 
 // There's a fundamental problem with for loops, and its that they are sequential 
-// You cannot process the second item until the first item 
+// You cannot process the second item until the first item is done. 
+
+// This is where Google invented the MAP-FILTER-REDUCE 
+
 
 // const data = [
 //   {name: "Tommy", birthday: "August"},
@@ -94,7 +97,7 @@ for (let item of list) {
 
 // FILTER
 // Take a list of element A, and remove elements that don't satisfy a condition
-const studentsBornInMarch = database.filter((studentData) => studentData.birthday === "March");
+// const studentsBornInMarch = database.filter((studentData) => studentData.birthday === "March");
 // = [ {name: "Brithney", birthday: "March"}, {name: "Monte", birthday: "March"} ]
 
 // REDUCE
