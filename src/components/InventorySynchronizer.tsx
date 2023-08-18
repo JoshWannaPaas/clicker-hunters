@@ -1,3 +1,5 @@
+"use client";
+
 import { DEFAULT_INVENTORY, Item, inventoryAtom, inventoryInitialized } from "@/atoms/inventory";
 import { useEffect, useState } from "react";
 import { atom, useRecoilState } from "recoil";

@@ -35,7 +35,8 @@ for (let item of list) {
 // Lesson 2 - MAP, FILTER, REDUCE
 
 
-// There's a fundamental problem
+// There's a fundamental problem with for loops, and its that they are sequential 
+// You cannot process the second item until the first item 
 
 // const data = [
 //   {name: "Tommy", birthday: "August"},
