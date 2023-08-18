@@ -3,7 +3,7 @@
 import React from "react";
 import { AtomEffect, atom, useRecoilState } from "recoil";
 import MaterialSection from "@/components/MaterialSection";
-import { inventoryAtom, vaultStoneSelector } from "@/atoms/inventory";
+import { Item, inventoryAtom, vaultStoneSelector } from "@/atoms/inventory";
 
 export default function Home() {
   const [inventory, setInventory] = useRecoilState(inventoryAtom);
@@ -14,7 +14,7 @@ export default function Home() {
   // const [vaultStone, setVaultStone] = React.useState(inventory["Vault Stone"] ?? 0);
   const [vaultStone, setVaultStone] = useRecoilState(vaultStoneSelector);
   const [vaultChip, setVaultChip] = React.useState(
-    inventory["Chipped Vault Rock"] ?? 0,
+    inventory[Item.CHIPPED_VAULT_ROCKS] ?? 0,
   );
 
   // const [chromaticIron, setChromaticIron] = React.useState(inventory["Chromatic Iron"] ?? 0);

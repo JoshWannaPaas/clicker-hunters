@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 import { RecoilRoot } from "recoil";
 import MaterialSection from "@/components/MaterialSection";
+import InventorySynchronizer from "@/components/InventorySynchronizer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <RecoilRoot>
+          <InventorySynchronizer/>
           <div>
             <h1>Clicker Hunters</h1>
 

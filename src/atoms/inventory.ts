@@ -1,45 +1,37 @@
 import { AtomEffect, DefaultValue, atom, selector } from "recoil";
 
-const localStorageEffect =
-  (key: string) =>
-  ({ setSelf, onSet }: any) => {
-    if (typeof window !== "undefined") {
-      const savedValue = localStorage.getItem(key);
-      if (savedValue != null) {
-        setSelf(JSON.parse(savedValue));
-      }
+export enum Item {
+  VAULT_STONE,
+  CHIPPED_VAULT_ROCKS,
+  CHROMATIC_IRON,
+  VAULT_ROCK,
+}
 
-      onSet((newValue: any, _: any, isReset: any) => {
-        isReset
-          ? localStorage.removeItem(key)
-          : localStorage.setItem(key, JSON.stringify(newValue));
-      });
-    }
-  };
+export const itemString: Record<Item, string> = {
+  [Item.VAULT_STONE]: "Vault Stone",
+  [Item.CHIPPED_VAULT_ROCKS]: "Chipped Vault Rock",
+  [Item.CHROMATIC_IRON]: "Chromatic Iron",
+  [Item.VAULT_ROCK]: "Vault Rock",
+};
 
-  export enum Item {
-    VAULT_STONE,
-    CHIPPED_VAULT_ROCKS,
-    CHROMATIC_IRON,
-    VAULT_ROCK
-  }
+export const DEFAULT_INVENTORY = {
+  [Item.VAULT_STONE]: 0,
+  [Item.CHIPPED_VAULT_ROCKS]: 0,
+  [Item.CHROMATIC_IRON]: 0,
+  [Item.VAULT_ROCK]: 0,
+}
 
-  export const itemString : Record<Item, string> = {
-    [Item.VAULT_STONE]: "Vault Stone",
-    [Item.CHIPPED_VAULT_ROCKS]: "Chipped Vault Rock",
-    [Item.CHROMATIC_IRON]: "Chromatic Iron",
-    [Item.VAULT_ROCK]: "Vault Rock",
-  }
+export const inventoryInitialized = atom({
+  key: "inventoryInitialized",
+  default: false
+});
 
 /**
  * The source of truth
  */
-export const inventoryAtom = atom<Record<string, number>>({
+export const inventoryAtom = atom<Record<Item, number>>({
   key: "inventoryAtom",
-  default: {
-    [Item.VAULT_STONE]: 0,
-  },
-  effects: [localStorageEffect("current_inventory")],
+  default: DEFAULT_INVENTORY,
 });
 
 /**
@@ -56,7 +48,7 @@ export const vaultStoneSelector = selector<number>({
   set: ({ get, set }, newValue) => {
     const inventory = get(inventoryAtom);
     const newVaultStone = newValue instanceof DefaultValue ? 0 : newValue;
-    set(inventoryAtom, { ...inventory, "Vault Stone": newVaultStone });
+    set(inventoryAtom, { ...inventory, [Item.VAULT_STONE]: newVaultStone });
   },
 });
 
@@ -86,7 +78,10 @@ export const vaultChipSelector = selector<number>({
   set: ({ get, set }, newValue) => {
     const inventory = get(inventoryAtom);
     const newVaultChip = newValue instanceof DefaultValue ? 0 : newValue;
-    set(inventoryAtom, { ...inventory, [Item.CHIPPED_VAULT_ROCKS]: newVaultChip });
+    set(inventoryAtom, {
+      ...inventory,
+      [Item.CHIPPED_VAULT_ROCKS]: newVaultChip,
+    });
   },
 });
 
@@ -104,3 +99,4 @@ export const vaultRockSelector = selector<number>({
     set(inventoryAtom, { ...inventory, [Item.VAULT_ROCK]: newVaultRock });
   },
 });
+
