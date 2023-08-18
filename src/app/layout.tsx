@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 
 import ProfileSection from "@/components/ProfileSection";
 import "./globals.css";
