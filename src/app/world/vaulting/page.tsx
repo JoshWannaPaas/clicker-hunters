@@ -1,5 +1,4 @@
 "use client";
-/*************
 
 import { inventoryAtom } from "@/atoms/inventory";
 import { usernameAtom } from "@/atoms/username";
@@ -34,34 +33,34 @@ export default function Home() {
   const numRocksForVault = 1;
   let currentVaultTime: number;
   const [runningVault, setRunningVault] = React.useState(false);
-  const [vaultRocks, setVaultRocks] = React.useState(
-    inventory["Vault Rocks"] || 0,
-  );
+  // const [vaultRocks, setVaultRocks] = React.useState(
+  //   inventory["Vault Rocks"] || 0,
+  // );
 
   // When button is pressed, wait vaultTime in timeInterval intervals for Vault to finish
   // Running a Vault is a countdown to generating loot
   const runVault = () => {
-    if (!runningVault && vaultRocks >= numRocksForVault) {
-      setRunningVault(true);
-      setVaultRocks(vaultRocks - numRocksForVault);
-      setInventory({
-        ...inventory,
-        "Vault Rocks": vaultRocks - numRocksForVault,
-      });
-      currentVaultTime = vaultTime;
+    // if (!runningVault && vaultRocks >= numRocksForVault) {
+    //   setRunningVault(true);
+    //   setVaultRocks(vaultRocks - numRocksForVault);
+    //   setInventory({
+    //     ...inventory,
+    //     "Vault Rocks": vaultRocks - numRocksForVault,
+    //   });
+    //   currentVaultTime = vaultTime;
 
-      let vaultRun = setInterval(() => {
-        currentVaultTime--;
-        setVaultMessage("Vault Ends In: " + currentVaultTime);
+    //   let vaultRun = setInterval(() => {
+    //     currentVaultTime--;
+    //     setVaultMessage("Vault Ends In: " + currentVaultTime);
 
-        if (currentVaultTime <= 0) {
-          clearInterval(vaultRun);
-          generateVaultLoot();
-          setVaultMessage("Vault is Finished! Run another vault!");
-          setRunningVault(false);
-        }
-      }, timeInterval);
-    }
+    //     if (currentVaultTime <= 0) {
+    //       clearInterval(vaultRun);
+    //       generateVaultLoot();
+    //       setVaultMessage("Vault is Finished! Run another vault!");
+    //       setRunningVault(false);
+    //     }
+    //   }, timeInterval);
+    // }
   };
 
   /*
@@ -103,57 +102,56 @@ export default function Home() {
         setTotalVaultLoot(totalLoot);
     }
 */
-/************
 
-  const [vaultDiamonds, setVaultDiamonds] = React.useState(
-    inventory["Vault Diamonds"] ?? 0,
-  );
-  const [larimar, setLarimar] = React.useState(inventory["Larimar"] ?? 0);
-  const [carbon, setCarbon] = React.useState(inventory["Carbon"] ?? 0);
-  const [knowledgeShards, setKnowledgeShards] = React.useState(
-    inventory["Knowledge Shards"] ?? 0,
-  );
-  const [lastVaultMsg, setLastVaultMsg] = React.useState(
-    "No Vault Has Been Run Yet",
-  );
+  // const [vaultDiamonds, setVaultDiamonds] = React.useState(
+  //   inventory["Vault Diamonds"] ?? 0,
+  // );
+  // const [larimar, setLarimar] = React.useState(inventory["Larimar"] ?? 0);
+  // const [carbon, setCarbon] = React.useState(inventory["Carbon"] ?? 0);
+  // const [knowledgeShards, setKnowledgeShards] = React.useState(
+  //   inventory["Knowledge Shards"] ?? 0,
+  // );
+  // const [lastVaultMsg, setLastVaultMsg] = React.useState(
+  //   "No Vault Has Been Run Yet",
+  // );
 
   const generateVaultLoot = () => {
-    let vaultLoot = [0, 0, 0, 0];
-    for (let i = 0; i < vaultLoot.length; i++)
-      vaultLoot[i] = Math.floor(Math.random() * 100);
+    // let vaultLoot = [0, 0, 0, 0];
+    // for (let i = 0; i < vaultLoot.length; i++)
+    //   vaultLoot[i] = Math.floor(Math.random() * 100);
 
-    setVaultDiamonds(vaultDiamonds + vaultLoot[0]);
-    setLarimar(larimar + vaultLoot[1]);
-    setCarbon(carbon + vaultLoot[2]);
-    setKnowledgeShards(knowledgeShards + vaultLoot[3]);
+    // setVaultDiamonds(vaultDiamonds + vaultLoot[0]);
+    // setLarimar(larimar + vaultLoot[1]);
+    // setCarbon(carbon + vaultLoot[2]);
+    // setKnowledgeShards(knowledgeShards + vaultLoot[3]);
 
-    setInventory({
-      ...inventory,
-      "Vault Diamonds": vaultDiamonds + vaultLoot[0],
-      Larimar: larimar + vaultLoot[1],
-      Carbon: carbon + vaultLoot[2],
-      "Knowledge Shards": knowledgeShards + vaultLoot[3],
-    });
+    // setInventory({
+    //   ...inventory,
+    //   "Vault Diamonds": vaultDiamonds + vaultLoot[0],
+    //   Larimar: larimar + vaultLoot[1],
+    //   Carbon: carbon + vaultLoot[2],
+    //   "Knowledge Shards": knowledgeShards + vaultLoot[3],
+    // });
 
-    // Display Bug here
-    for (let i = 0; i < vaultLoot.length; i++) {
-      if (i == vaultLoot.length - 1)
-        setLastVaultMsg(lastVaultMsg + lootList[i] + ": " + vaultLoot[i]);
-      setLastVaultMsg(lastVaultMsg + lootList[i] + ": " + vaultLoot[i] + ", ");
-    }
+    // // Display Bug here
+    // for (let i = 0; i < vaultLoot.length; i++) {
+    //   if (i == vaultLoot.length - 1)
+    //     setLastVaultMsg(lastVaultMsg + lootList[i] + ": " + vaultLoot[i]);
+    //   setLastVaultMsg(lastVaultMsg + lootList[i] + ": " + vaultLoot[i] + ", ");
+    // }
   };
 
   return (
     <main>
       <p>We came to vault, vault, vault, vault...</p>
       <button
-        disabled={runningVault || vaultRocks < numRocksForVault}
+        // disabled={runningVault || vaultRocks < numRocksForVault}
         onClick={runVault}
       >
         {vaultMessage}
       </button>
       <h3>Last Vault Run Loot</h3>
-      {lastVaultMsg}
+      {/* {lastVaultMsg} */}
     </main>
   );
 }
@@ -182,6 +180,3 @@ export default function Home() {
 // const WelcomeMessage: React.FC<{name: string}> = ({name}) => {
 //     return <div>Welcome {name}</div>
 // }
-
-
-**********/
