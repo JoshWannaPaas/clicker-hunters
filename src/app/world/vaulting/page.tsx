@@ -1,4 +1,5 @@
 "use client";
+/*************
 
 import { inventoryAtom } from "@/atoms/inventory";
 import { usernameAtom } from "@/atoms/username";
@@ -102,6 +103,7 @@ export default function Home() {
         setTotalVaultLoot(totalLoot);
     }
 */
+/************
 
   const [vaultDiamonds, setVaultDiamonds] = React.useState(
     inventory["Vault Diamonds"] ?? 0,
@@ -180,3 +182,6 @@ export default function Home() {
 // const WelcomeMessage: React.FC<{name: string}> = ({name}) => {
 //     return <div>Welcome {name}</div>
 // }
+
+
+**********/
