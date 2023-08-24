@@ -10,7 +10,6 @@ export default function Home() {
     `Use a Vault Rock to Run a vault!`,
   );
 
-
   const vaultTime = 10;
   const timeInterval = 100;
   const numRocksForVault = 1;
@@ -44,13 +43,13 @@ export default function Home() {
   const [larimar, setLarimar] = useRecoilState(larimarSelector);
   const [carbon, setCarbon] = useRecoilState(carbonSelector);
   const [knowledgeShards, setKnowledgeShards] = useRecoilState(knowledgeShardSelector);
-  const [lastVaultMsg, setLastVaultMsg] = React.useState([]);
+  const [lastVaultMsg, setLastVaultMsg] = React.useState([<Typography></Typography>]);
 
   enum Loot {
     CARBON, KNOWLEDGE_SHARD, LARIMAR, VAULT_DIAMOND
   }
 
-  let msgBuffer: Typography = [];
+  let msgBuffer = [<Typography></Typography>];
 
   const generateVaultLoot = () => {
     const numChests = 10;
