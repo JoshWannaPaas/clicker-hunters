@@ -7,6 +7,7 @@ export enum Item {
   KNOWLEDGE_SHARD,
   LARIMAR,
   VAULT_DIAMOND,
+  VAULT_GOLD,
   VAULT_ROCK,
   VAULT_STONE,
 }
@@ -18,6 +19,7 @@ export const itemString: Record<Item, string> = {
   [Item.KNOWLEDGE_SHARD]: "Knowledge Shards",
   [Item.LARIMAR]: "Larimar",
   [Item.VAULT_DIAMOND]: "Vault Diamonds",
+  [Item.VAULT_GOLD]: "Vault Gold",
   [Item.VAULT_ROCK]: "Vault Rocks",
   [Item.VAULT_STONE]: "Vault Stone",
 };
@@ -29,6 +31,7 @@ export const DEFAULT_INVENTORY = {
   [Item.KNOWLEDGE_SHARD]: 0,
   [Item.LARIMAR]: 0,
   [Item.VAULT_DIAMOND]: 0,
+  [Item.VAULT_GOLD]: 0,
   [Item.VAULT_ROCK]: 0,
   [Item.VAULT_STONE]: 0,
 }
@@ -139,6 +142,21 @@ export const vaultDiamondSelector = selector<number>({
     const inventory = get(inventoryAtom);
     const newItem = newValue instanceof DefaultValue ? 0 : newValue;
     set(inventoryAtom, { ...inventory, [Item.VAULT_DIAMOND]: newItem });
+  },
+});
+
+export const vaultGoldSelector = selector<number>({
+  key: "vaultGoldSelector",
+  // Generate Derived State
+  get: ({ get }) => {
+    const inventory = get(inventoryAtom);
+    return inventory[Item.VAULT_GOLD] ?? 0;
+  },
+  // Update Derived State
+  set: ({ get, set }, newValue) => {
+    const inventory = get(inventoryAtom);
+    const newItem = newValue instanceof DefaultValue ? 0 : newValue;
+    set(inventoryAtom, { ...inventory, [Item.VAULT_GOLD]: newItem });
   },
 });
 
