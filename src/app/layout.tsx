@@ -14,6 +14,7 @@ import gatheringPic from "./img/Gathering.png";
 import vaultingPic from "./img/Vaulting.png";
 import homePic from "./img/Home.png";
 import titlePic from "./img/Idle Hunters 3.png";
+import marketPic from "./img/Market.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,6 +51,9 @@ export default function RootLayout({
             </Link>
             <Link className="nav" href="/world/vaulting">
               <Image src={vaultingPic} alt="Vaulting" height={imageHeight} />
+            </Link>
+            <Link className="nav" href="/world/market">
+              <Image src={marketPic} alt="Market" height={imageHeight} />
             </Link>
             <br />
             <br />
