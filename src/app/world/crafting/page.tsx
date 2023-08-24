@@ -3,14 +3,14 @@
 import {
   chromIronSelector,
   inventoryAtom,
-  vaultChipSelector,
+  chippedVaultRockSelector,
   vaultRockSelector,
 } from "@/atoms/inventory";
 import React from "react";
 import { useRecoilState } from "recoil";
 
 export default function Home() {
-  const [vaultChips, setVaultChips] = useRecoilState(vaultChipSelector);
+  const [vaultChips, setVaultChips] = useRecoilState(chippedVaultRockSelector);
   const [chromIron, setChromIron] = useRecoilState(chromIronSelector);
   const [vaultRocks, setVaultRocks] = useRecoilState(vaultRockSelector);
 

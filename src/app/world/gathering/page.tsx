@@ -3,67 +3,55 @@
 import React from "react";
 import { AtomEffect, atom, useRecoilState } from "recoil";
 import MaterialSection from "@/components/MaterialSection";
-import { Item, inventoryAtom, vaultStoneSelector } from "@/atoms/inventory";
+import {
+  chromIronSelector,
+  chippedVaultRockSelector,
+  vaultStoneSelector,
+} from "@/atoms/inventory";
 
 export default function Home() {
-  const [inventory, setInventory] = useRecoilState(inventoryAtom);
-
   const vaultChipChance = 0.2;
   const vaultStoneForChromaticIron = 20;
-
-  // const [vaultStone, setVaultStone] = React.useState(inventory["Vault Stone"] ?? 0);
+  
   const [vaultStone, setVaultStone] = useRecoilState(vaultStoneSelector);
-  const [vaultChip, setVaultChip] = React.useState(
-    inventory[Item.CHIPPED_VAULT_ROCKS] ?? 0,
-  );
-
-  // const [chromaticIron, setChromaticIron] = React.useState(inventory["Chromatic Iron"] ?? 0);
-  const [chromaticIron, setChromaticIron] = React.useState();
-
+  const [vaultChip, setVaultChip] = useRecoilState(chippedVaultRockSelector);
+  const [chromaticIron, setChromaticIron] = useRecoilState(chromIronSelector);
+  
+  // Make these global at some point
+  const [canMineChromaticIron, setCanMineChromaticIron] = React.useState(false)
   const [chromaticIronReq, setChromaticIronReq] = React.useState(
     "Get " +
       vaultStoneForChromaticIron +
       " Vault Stone to unlock Chromatic Iron",
   );
 
+
   //****  Button Events  ****/
 
-  // 20% Chance to get a Chipped Vault Rock from mining Vault Stone
+
+  // <20%> Chance to get a Chipped Vault Rock from mining Vault Stone
   const mineVaultStone = () => {
-    if (Math.random() <= vaultChipChance) {
-      /** @todo */
-
-
-      // const newChipValue = vaultChip + 1;
-      // setVaultChip(newChipValue);
-      // setInventory({...inventory, "Chipped Vault Rock": newChipValue});  // No idea why +1 is needed, maybe it just doesnt refresh until after
-    } else {
+    if (Math.random() <= vaultChipChance)
+      setVaultChip(vaultChip + 1);
+    else
       setVaultStone(vaultStone + 1);
-
-      // setVaultStone(vaultStone + 1);
-      // setInventory({...inventory, "Vault Stone": vaultStone+1});
-    }
   };
 
-  // You need 20 Vault Stone before you can start mining Chromatic Iron
-  let canMineChromaticIron = false;
+  // You need <20> Vault Stone before you can start mining Chromatic Iron
   const mineChromaticIron = () => {
     if (vaultStone >= vaultStoneForChromaticIron && !canMineChromaticIron) {
       setChromaticIronReq("Mine Chromatic Iron");
-      canMineChromaticIron = true;
+      setCanMineChromaticIron(true);
     }
-    if (canMineChromaticIron) {
-      // setChromaticIron(chromaticIron + 1);
-      // setInventory({ ...inventory, "Chromatic Iron": chromaticIron + 1 });
-    }
+    if (canMineChromaticIron) 
+      setChromaticIron(chromaticIron + 1);
   };
 
   // Reset Inventory for Debugging Purposes
   const resetInventory = () => {
     setVaultChip(0);
     setVaultStone(0);
-    // setChromaticIron(0);
-    // setInventory({ "Vault Stone": 0 });
+    setChromaticIron(0);
     setChromaticIronReq(
       "Get " +
         vaultStoneForChromaticIron +

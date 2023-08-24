@@ -5,9 +5,15 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 import { RecoilRoot } from "recoil";
 import MaterialSection from "@/components/MaterialSection";
 import InventorySynchronizer from "@/components/InventorySynchronizer";
+import craftingPic from "./img/Crafting.png";
+import gatheringPic from "./img/Gathering.png";
+import vaultingPic from "./img/Vaulting.png";
+import homePic from "./img/Home.png";
+import titlePic from "./img/Idle Hunters 3.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,25 +29,27 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const imageHeight = 50;
+
   return (
     <html lang="en">
       <body>
         <RecoilRoot>
-          <InventorySynchronizer/>
+          <InventorySynchronizer />
           <div>
-            <h1>Clicker Hunters</h1>
+            <h1><Image src={titlePic} alt="" height={100}/></h1>
 
             <Link className="nav" href="/">
-              Home
+              <Image src={homePic} alt="Home" height={imageHeight} />
             </Link>
             <Link className="nav" href="/world/crafting">
-              Crafting
+              <Image src={craftingPic} alt="Crafting" height={imageHeight} />
             </Link>
             <Link className="nav" href="/world/gathering">
-              Gathering
+              <Image src={gatheringPic} alt="Gathering" height={imageHeight} />
             </Link>
             <Link className="nav" href="/world/vaulting">
-              Vaulting
+              <Image src={vaultingPic} alt="Vaulting" height={imageHeight} />
             </Link>
             <br />
             <br />

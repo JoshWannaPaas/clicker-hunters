@@ -7,35 +7,22 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-
 const MaterialSection = () => {
   const [inventory, setInventory] = useRecoilState(inventoryAtom);
-  
+
   const items = Object.entries(inventory);
   // Step 1 - Filter items to remove things where value is 0
   const heldItems = items.filter(([item, quantity]) => quantity !== 0);
   // Step 2 - Map items to Typography with the correct contents
   const heldItemsDisplay = heldItems.map(([item, quantity]) => (
-        <Typography key={item}>
-          {itemString[Number(item) as Item] }: {quantity}
-        </Typography>
-      ));
-
-
-  // const inventoryDisplay = [];
-  // for (let item of items) {
-  //   inventoryDisplay.push(
-  //     <Typography key={item[0]}>
-  //       {item}: {item}
-  //     </Typography>
-  //   )
-  // }
-
-  
+    <Typography key={item}>
+      {itemString[Number(item) as Item]}: {quantity}
+    </Typography>
+  ));
 
   return (
     <div>
-      <Accordion className="Inventory">
+      <Accordion className="inventory">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -44,11 +31,13 @@ const MaterialSection = () => {
           <Typography id="invHeader-text">Inventory</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {heldItems.map(([item, quantity]) => (
-          <Typography key={item}>
-            {itemString[Number(item) as Item] }: {quantity}
-          </Typography>
-        ))}
+          {
+            heldItems.map(([item, quantity]) => (
+              <Typography key={item}>
+                {itemString[Number(item) as Item]}: {quantity}
+              </Typography>
+            ))
+          }
         </AccordionDetails>
       </Accordion>
     </div>
@@ -56,5 +45,3 @@ const MaterialSection = () => {
 };
 
 export default MaterialSection;
-
-

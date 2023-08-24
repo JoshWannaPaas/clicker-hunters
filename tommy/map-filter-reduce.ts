@@ -3,8 +3,9 @@
  * August 17, 2023
  */
 
-
-// Lesson 1 - The Stupid Way Javascript Evolved For Loops
+// ============================================================== //
+// === Lesson 1 - The Stupid Way Javascript Evolved For Loops === //
+// ============================================================== //
 
 const list = ["A", "B", "C"]
 
@@ -31,75 +32,57 @@ for (let item of list) {
 
 
 
-
-// Lesson 2 - MAP, FILTER, REDUCE
-
+// ============================================================== //
+// =============== Lesson 2 - MAP, FILTER, REDUCE =============== //
+// ============================================================== //
 
 // There's a fundamental problem with for loops, and its that they are sequential 
 // You cannot process the second item until the first item is done. 
 
-// This is where Google invented the MAP-FILTER-REDUCE 
+// This is where Google invented the MAP-FILTER-REDUCE methodology to allow for 
+// distributed computing. 
 
+// All of these operations take a function that looks at ONE element A and converts it to ONE element B. 
+// Because the function guarantees it only cares about one item at a time, we can split up 
+// the list. Parallelism! Divide and Conquer baby. In modern computers, you achieve speed ups by 
+// distributing work between different cores of the CPU, instead of different ful computers. 
 
-// const data = [
-//   {name: "Tommy", birthday: "August"},
-//   {name: "Ellen", birthday: "November"},
-// ] as const
+type StudentInfo = {
+  name: string; 
+  gpa: number;
+};
 
-// const list1 = [];
-// for (let item of data) {
-//   list1.push(item.name)
-// }
+const students: StudentInfo[] = [
+  {name: "Tommy", gpa: 3.99},
+  {name: "Joshua", gpa: 3.95},
+  {name: "Ellen", gpa: 3.90},
+  {name: "Guillermo", gpa: 2.00},
+];
 
+// Part 1: MAP
+// Converts a list of element A to a list of element B
 
-// for (let i = 0; i < data.length; i++) {
-//   const item = data[i];
-//   // ... do stuff to item
-// }
+/** A function that converts a student to their name */
+const toName = (studentInfo: StudentInfo) => studentInfo.name;
+const names = students.map(toName);
+console.log(names);
 
-// for (let i in data) {
-//   const item = data[i];
-//   // ... do stuff to item
-// }
+// Part 2: FILTER
+// Removes elements that don't satisfy a condition
 
-// for (let item of data) {
-//   // ... do stuff to item
-// }
+/** A function that returns true if GPA is high */
+const isHonors = (studentInfo: StudentInfo) => studentInfo.gpa > 3.0;
+const honors = students.map(isHonors);
+console.log(honors);
 
-// data.forEach((item, i) => {
-//   // ... do stuff
-// })
+// Part 3: REDUCE
+// Combine the list into a single value.
 
-// list1 = ["Tommy", "Ellen"]
+const numbers = [2, 4, 8, 16];
+const sum = numbers.reduce((prevNumber, currNumber) => prevNumber + currNumber);
+console.log(sum);
 
-
-// const list2 = data.map((item) => item.name)
-// list2 = ["Tommy", "Ellen"]
-
-
-// MAP
-// Convert a list of element A to a list of element B of the same length
-// For example, take list of All Student Data, convert to list of All Student Names
-
-// const database = [
-//   {name: "Tommy", birthday: "August"},
-//   {name: "Ellen", birthday: "November"},
-//   {name: "Sam", birthday: "May"},
-//   {name: "Brithney", birthday: "March"},
-//   {name: "Monte", birthday: "March"},
-// ] as const;
-
-// const studentNames = database.map(
-//   (studentData) => {
-//     return studentData.name;
-//   }
-// );
-
-// FILTER
-// Take a list of element A, and remove elements that don't satisfy a condition
-// const studentsBornInMarch = database.filter((studentData) => studentData.birthday === "March");
-// = [ {name: "Brithney", birthday: "March"}, {name: "Monte", birthday: "March"} ]
-
-// REDUCE
-// Takes a list of element A and returns a single element B
-
+/**
+ * Read more here:
+ * - https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
+ */
