@@ -1,14 +1,11 @@
 "use client";
 
 import { Item, carbonSelector, inventoryAtom, knowledgeShardSelector, larimarSelector, vaultDiamondSelector, vaultRockSelector } from "@/atoms/inventory";
-import { usernameAtom } from "@/atoms/username";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { Typography } from "@mui/material";
 
 export default function Home() {
-  const [inventory, setInventory] = useRecoilState(inventoryAtom);
-
-  // const [username, setUsername] = useRecoilState(usernameAtom);
   const [vaultMessage, setVaultMessage] = React.useState(
     `Use a Vault Rock to Run a vault!`,
   );
@@ -43,24 +40,17 @@ export default function Home() {
     }
   };
 
-    // Stores the actual values for your Total Vault Loot
-    const [lootValues, setLootValues] = React.useState([0, 0, 0, 0]);
-
-    // Display of the Current/Total Vault Loot gotten
-    const [lastVaultLoot, setLastVaultLoot] = React.useState("No Vault has been run yet");
-    const [totalVaultLoot, setTotalVaultLoot] = React.useState("Nothing");
-
   const [vaultDiamonds, setVaultDiamonds] = useRecoilState(vaultDiamondSelector);
   const [larimar, setLarimar] = useRecoilState(larimarSelector);
   const [carbon, setCarbon] = useRecoilState(carbonSelector);
   const [knowledgeShards, setKnowledgeShards] = useRecoilState(knowledgeShardSelector);
-  const [lastVaultMsg, setLastVaultMsg] = React.useState(
-    "No Vault Has Been Run Yet",
-  );
+  const [lastVaultMsg, setLastVaultMsg] = React.useState([]);
 
   enum Loot {
     CARBON, KNOWLEDGE_SHARD, LARIMAR, VAULT_DIAMOND
   }
+
+  let msgBuffer: Typography = [];
 
   const generateVaultLoot = () => {
     const numChests = 10;
@@ -78,6 +68,8 @@ export default function Home() {
     ]
 
     let carbonObtained = 0, knowledgeObtained = 0, larimarObtained = 0, vaultDiamondsObtained = 0;
+    let totalCarbon = 0, totalKnowledge = 0, totalLarimar = 0, totalVaultDiamonds = 0;
+    
 
     for(let i = 0; i < numChests; i++){
       carbonObtained        = (Math.floor(Math.random() * 20));
@@ -86,31 +78,43 @@ export default function Home() {
       vaultDiamondsObtained = (Math.floor(Math.random() *  5));
 
       if(Math.random() < carbonChance){
-        setCarbon(carbon + carbonObtained);
+        totalCarbon += carbonObtained;
         testLoot[Loot.CARBON][i] = carbonObtained;
       } else {carbonObtained = 0}
 
       if(Math.random() < knowledgeChance){
-        setKnowledgeShards(knowledgeShards + knowledgeObtained);
+        totalKnowledge += knowledgeObtained;
         testLoot[Loot.KNOWLEDGE_SHARD][i] = knowledgeObtained;
       } else {knowledgeObtained = 0}
 
       if(Math.random() < larimarChance){
-        setLarimar(larimar + larimarObtained);
+        totalLarimar += larimarObtained;
         testLoot[Loot.LARIMAR][i] = larimarObtained;
       } else {larimarObtained = 0}
 
       if(Math.random() < vaultDiamondChance){
-        setVaultDiamonds(vaultDiamonds + vaultDiamondsObtained);
+        totalVaultDiamonds += vaultDiamondsObtained;
         testLoot[Loot.VAULT_DIAMOND][i] = vaultDiamondsObtained;
       } else {vaultDiamondsObtained = 0}
 
 
-      console.log("**Chest " + (i+1) + "** Carbon: " + carbonObtained + " Knowledge: " + knowledgeObtained + 
-                  " Larimar: " + larimarObtained + " VDias: " + vaultDiamondsObtained);
-    }
+      console.log("**Chest " + (i+1) + "** Carbon: " + carbonObtained + ", Knowledge: " + knowledgeObtained + 
+                  ", Larimar: " + larimarObtained + ", VDias: " + vaultDiamondsObtained);
 
-    console.log(testLoot);
+      // lastVaultMsg += "**Chest " + (i+1) + "** Carbon: " + carbonObtained + " Knowledge: " + knowledgeObtained + 
+      // " Larimar: " + larimarObtained + " VDias: " + vaultDiamondsObtained + "\n";
+
+      msgBuffer.push(<Typography>**Chest {i+1}** Carbon: {carbonObtained}, Knowledge: {knowledgeObtained}, Larimar: {larimarObtained}, VDias: {vaultDiamondsObtained}</Typography>)
+    }
+    
+    setCarbon(carbon + totalCarbon);
+    setKnowledgeShards(knowledgeShards + totalKnowledge);
+    setLarimar(larimar + totalLarimar);
+    setVaultDiamonds(vaultDiamonds + totalVaultDiamonds);
+    
+    msgBuffer.push(<Typography>**Total** Carbon: {totalCarbon}, Knowledge: {totalKnowledge}, Larimar: {totalLarimar}, VDias: {totalVaultDiamonds}</Typography>)
+    setLastVaultMsg(msgBuffer);
+    // console.log(testLoot);
   };
 
   return (
@@ -123,32 +127,7 @@ export default function Home() {
         {vaultMessage}
       </button>
       <h3>Last Vault Run Loot</h3>
-      {/* {lastVaultMsg} */}
+      {lastVaultMsg}
     </main>
   );
 }
-
-// const Website = () => {
-//     const [username, setUsername] = React.useState("Tommy");
-//     return (
-//         <Navbar name={username}/>
-//     )
-// }
-
-// const Navbar: React.FC<{name: string}> = ({name}) => {
-//     return (
-//         <div>
-//             <img />
-//             <WelcomeMessage name={name}/>
-//             <ProfileSection name={name}/>
-//         </div>
-//     )
-// }
-// RecoilRoot
-// const ProfileSection: React.FC<{name: string}> = ({name}) => {
-//     return <div>Hello {name}</div>
-// }
-
-// const WelcomeMessage: React.FC<{name: string}> = ({name}) => {
-//     return <div>Welcome {name}</div>
-// }
