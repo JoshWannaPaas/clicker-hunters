@@ -1,6 +1,6 @@
 {
   "extends": "next/core-web-vitals",
-  "rules": {
-    "react/jsx-key": "off"
-  }
+  // "rules": {
+  //   "react/jsx-key": "off"
+  // }
 }
