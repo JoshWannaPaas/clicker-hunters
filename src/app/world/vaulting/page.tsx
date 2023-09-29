@@ -64,20 +64,20 @@ function generateVaultLoot(numChests: number): ChestLoot[] {
 }
 
 // Displays All Chest Loot Totaled Up
-function totalLoot(chestsLoot : ChestLoot[]): ChestLoot {
+function totalLoot(chestsLoot: ChestLoot[]): ChestLoot {
   const totalChestLoot: ChestLoot = {
     [Item.CARBON]: 0,
     [Item.KNOWLEDGE_SHARD]: 0,
     [Item.LARIMAR]: 0,
     [Item.VAULT_DIAMOND]: 0,
-  }
+  };
 
   chestsLoot.forEach((chestLoot: ChestLoot) => {
     totalChestLoot[Item.CARBON] += chestLoot[Item.CARBON];
     totalChestLoot[Item.KNOWLEDGE_SHARD] += chestLoot[Item.KNOWLEDGE_SHARD];
     totalChestLoot[Item.LARIMAR] += chestLoot[Item.LARIMAR];
     totalChestLoot[Item.VAULT_DIAMOND] += chestLoot[Item.VAULT_DIAMOND];
-  })
+  });
 
   return totalChestLoot;
 }
@@ -87,8 +87,8 @@ export default function Home() {
     `Use a Vault Rock to Run a vault!`,
   );
 
-  const vaultTime = 10;
-  const timeInterval = 100;
+  const vaultTime = 60;
+  const timeInterval = 1000;   // How many ms each "Vault Time" takes
   const numRocksForVault = 1;
   let currentVaultTime: number;
   const [runningVault, setRunningVault] = useState(false);
@@ -127,10 +127,19 @@ export default function Home() {
 
         // Add vault loot to inventory
         newVaultLoot.forEach((currentChest: ChestLoot) => {
-          setCarbon((previousValue) => previousValue + currentChest[Item.CARBON]);
-          setKnowledgeShards((previousValue) => previousValue + currentChest[Item.KNOWLEDGE_SHARD]);
-          setLarimar((previousValue) => previousValue + currentChest[Item.LARIMAR]);
-          setVaultDiamonds((previousValue) => previousValue + currentChest[Item.VAULT_DIAMOND]);
+          setCarbon(
+            (previousValue) => previousValue + currentChest[Item.CARBON],
+          );
+          setKnowledgeShards(
+            (previousValue) =>
+              previousValue + currentChest[Item.KNOWLEDGE_SHARD],
+          );
+          setLarimar(
+            (previousValue) => previousValue + currentChest[Item.LARIMAR],
+          );
+          setVaultDiamonds(
+            (previousValue) => previousValue + currentChest[Item.VAULT_DIAMOND],
+          );
         });
       }
     }, timeInterval);
@@ -146,15 +155,13 @@ export default function Home() {
         {vaultMessage}
       </button>
       <h3>Last Vault Run Loot</h3>
-      {currentVaultLoot.map((chestLoot: ChestLoot, index: number) => 
-         (
-          <Typography key={index}>
-            **Chest {index + 1}** Carbon: {chestLoot[Item.CARBON]}, Knowledge:{" "}
-            {chestLoot[Item.KNOWLEDGE_SHARD]}, Larimar:{" "}
-            {chestLoot[Item.LARIMAR]}, VDias: {chestLoot[Item.VAULT_DIAMOND]}
-          </Typography>
-        )
-      )}
+      {currentVaultLoot.map((chestLoot: ChestLoot, index: number) => (
+        <Typography key={index}>
+          **Chest {index + 1}** Carbon: {chestLoot[Item.CARBON]}, Knowledge:{" "}
+          {chestLoot[Item.KNOWLEDGE_SHARD]}, Larimar: {chestLoot[Item.LARIMAR]},
+          VDias: {chestLoot[Item.VAULT_DIAMOND]}
+        </Typography>
+      ))}
       {/*stuff*/}
     </main>
   );

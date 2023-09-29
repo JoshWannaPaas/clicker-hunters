@@ -42,7 +42,7 @@ export const inventoryInitialized = atom({
 });
 
 /**
- * The source of truth
+ * 
  */
 export const inventoryAtom = atom<Record<Item, number>>({
   key: "inventoryAtom",

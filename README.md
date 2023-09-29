@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Outline
 
-## Getting Started
+3 Phases:
+Gathering, Crafting, Vaulting
 
-First, run the development server:
+# Gathering
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Gather Resources. Like your typical Clicker Game.
+Click a button, increase number of thing..
+Eventually you can get ways to do this for you automatically
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Crafting
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Use the resources you got from Gathering to make things.
+These crafted resources will be used for progression and will eventually be automated
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Vaulting
 
-## Learn More
+A timed resource collection. Think of it as an automatic Gathering that you have on a timer.
+Needs Vault Rock + Vault Stone (to build a portal?) to go Vaulting.
+These are done autoamtically, and you'll need to hire people to run vaults for you.
+These people can have their stats/gear adjusted to make for better gains/survival rates for vaults.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Systems/Mechanics
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+# Materials
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Your inventory is shown on the page at all times and can be hidden if wished.
+Every phase of the game will add to your inventory, and some will require to use materials of course.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Break the game's resources into very basic components. Things that compact should just be at their highest tier.
+For example, instead of having Raw Chromatic Iron that you need to smelt when you mine it, just get Chromatic Iron (Ingots)
+Another example, instead of getting Knowledge Essence that you just need to compact into Knowledge Shards, you just get Knowledge Shards from Vaults
+
+Crafting amounts aren't limited to Minecraft's 3x3 workbench, so values of crafts may be adjusted.
+For example, Knowledge Stars are crafted with 8 Knowledge Shards, but since you get Shards from Vaults, you can extend this to something like 100 Shards for a Knowledge Star
+
+
+# Soul Shards
+
+This is one of two primary currencies in the game. All Vault Materials can be converted to Soul Shards, and technically, this is your overall "worth."
+Not sure at the moment, but upgrades might be at the cost of either Materials, Soul Shards, or both.
+If I implement Greed Levels as the New Game+/Ascension mechanic, the total amount of Soul Shards after diffusing everything you own will be what determines Greed Level.
+
+
+# Vault Currency
+
+Instead of diffusing materials, you can sell them at the market for Vault Currency.
+Currency comes in the form of Vault Bronze, Silver, Gold, and Platinum.
+Currency will be used either solely or in combination with materials to do things like purchase items or hire people.
